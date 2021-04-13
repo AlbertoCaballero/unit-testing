@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ShareButtonComponent } from './components/share-button/share-button.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShareButtonComponent
   ],
   imports: [
     BrowserModule,
