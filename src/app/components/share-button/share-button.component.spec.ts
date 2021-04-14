@@ -6,6 +6,10 @@ describe('ShareButtonComponent', () => {
   let component: ShareButtonComponent;
   let fixture: ComponentFixture<ShareButtonComponent>;
 
+  it('should create share button', () => {
+    expect(component).toBeTruthy();
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ShareButtonComponent ]
@@ -19,7 +23,17 @@ describe('ShareButtonComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('#shareClick() should alert the user', () => {
+    expect(component.shared).toBe(false, 'False at firs');
+    component.shareClick();
+    expect(component.shared).toBe(true, 'True after clicked');
+    component.shareClick();
+    expect(component.shared).toBe(false, 'False again after clicked a second time');
   });
+
+  it('should call an alert', () => {
+    spyOn(window, "alert");
+    component.shareClick();
+    expect(window.alert).toHaveBeenCalledWith('You clicked the button! true');
+  })
 });

@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./share-button.component.sass']
 })
 export class ShareButtonComponent implements OnInit {
+  shared: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  shareClick() {
+    this.shared = !this.shared;
+    alert(`You clicked the button! ${this.shared}`);
+  }
 }
