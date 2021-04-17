@@ -1,41 +1,35 @@
-import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DataService } from 'src/app/services/data.service';
+import { MockDataService } from 'src/app/services/data.service.mock';
 
 import { ShareButtonComponent } from './share-button.component';
 
 describe('ShareButtonComponent', () => {
   let component: ShareButtonComponent;
   let fixture: ComponentFixture<ShareButtonComponent>;
-  let de: DebugElement;
-  let service: DataService;
-  let spy: jasmine.Spy;
 
-  it('should create share button', () => {
-    expect(component).toBeTruthy();
-  });
-
-  beforeEach(async () => {
-    TestBed.configureTestingModule({
-      // imports: [HttpClient],
-      declarations: [ShareButtonComponent],
-      providers: [DataService],
-    }).compileComponents();
-  });
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ShareButtonComponent],
+        providers: [
+          {
+            provide: DataService,
+            useClass: MockDataService,
+          },
+        ],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ShareButtonComponent);
     component = fixture.componentInstance;
-    service = de.injector.get(DataService);
-    spy = spyOn(service, 'getTodo').and.returnValue(of('{ id: 1 }'))
     fixture.detectChanges();
   });
 
-  it('should call getTodo of DataService and update local todo', () => {
-    expect(spy).toHaveBeenCalled();
-    expect(spy.calls.all().length).toEqual(1);
-    expect(component.todo).toBe('{ id: 1 }');
+  it('should create share button', () => {
+    expect(component).toBeTruthy();
   });
 
   it('#shareClick() should alert the user', () => {

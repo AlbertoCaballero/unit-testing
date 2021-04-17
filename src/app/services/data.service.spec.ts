@@ -1,4 +1,3 @@
-import { HttpClientModule, HttpClient, HttpResponse, } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, } from '@angular/common/http/testing';
 import { TestBed, inject } from '@angular/core/testing';
 
