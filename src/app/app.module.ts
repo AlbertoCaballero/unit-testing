@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ShareButtonComponent } from './components/share-button/share-button.component';
 import { ToggleButtonComponent } from './components/toggle-button/toggle-button.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

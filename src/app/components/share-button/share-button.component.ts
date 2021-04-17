@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from 'src/app/models/todo.model';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-share-button',
@@ -7,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShareButtonComponent implements OnInit {
   shared: boolean = false;
+  todo: Todo | undefined;
 
-  constructor() { }
+  constructor(private dataService: DataService) {
+    this.dataService.getTodo(1).subscribe(todo => {
+      this.todo = todo;
+    });
+  }
 
   ngOnInit(): void {
   }
